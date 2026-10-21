@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- SCRIPT PENJAGA PINTU: Mencegah akses tanpa login -->
+    <script>
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderCare - Pengaturan Sistem</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#247C83',
+                        secondary: '#258568',
+                        accent: '#2ECC71',
+                        bglight: '#F7F9FA',
+                        surface: '#FFFFFF',
+                        textPrimary: '#233747',
+                        textSecondary: '#71818D',
+                        borderLight: '#E5E7EB',
+                        error: '#EF4444',
+                        success: '#10B981'
+                    },
+                    fontFamily: {
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bglight text-textPrimary font-sans flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="w-64 bg-surface border-r border-borderLight flex flex-col justify-between shrink-0">
+        <div>
+            <!-- Logo Brand -->
+            <div class="flex items-center gap-3 px-6 py-6 text-primary font-bold text-xl border-b border-gray-100">
+                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                <span>ElderCare</span>
+            </div>
+
+            <!-- Menu Navigasi -->
+            <nav class="p-4 space-y-1.5">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard Utama
+                </a>
+                <a href="status.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Status Perangkat
+                </a>
+                <a href="riwayat.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Riwayat & Log
+                </a>
+                <a href="pengaturan.html" class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    Pengaturan
+                </a>
+            </nav>
+        </div>
+
+        <!-- Tombol Keluar -->
+        <div class="p-4 border-t border-borderLight">
+            <a href="#" onclick="prosesLogout()" class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error/10 rounded-xl font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Keluar
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col h-screen overflow-y-auto">
+        
+        <!-- Header Atas -->
+        <header class="bg-surface border-b border-borderLight px-8 py-4 flex justify-between items-center sticky top-0 z-30">
+            <div>
+                <h1 class="text-xl font-bold text-textPrimary">Pengaturan Sistem</h1>
+                <p class="text-xs text-textSecondary">Kelola profil lansia, perangkat ESP32, dan bot notifikasi</p>
+            </div>
+        </header>
+
+        <!-- Konten Pengaturan -->
+        <main class="p-8 max-w-4xl space-y-6 pb-12">
+
+            <!-- Notifikasi Berhasil Simpan -->
+            <div id="alert-success" class="hidden p-4 bg-emerald-50 border border-emerald-200 text-success text-sm rounded-xl font-medium flex items-center gap-2">
+                ✓ Pengaturan berhasil disimpan ke sistem!
+            </div>
+
+            <!-- Form Pengaturan -->
+            <form id="settings-form" class="space-y-6">
+                
+                <!-- Card 1: Profil Lansia -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm space-y-4">
+                    <h2 class="text-base font-bold text-textPrimary pb-2 border-b border-gray-100">Informasi Lansia & Pemantauan</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">Nama Lengkap Lansia</label>
+                            <input type="text" id="elder-name" value="Ny. Siti Aminah" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">ID Perangkat Gelang (#ID)</label>
+                            <input type="text" id="device-id" value="#ELDER-ESP32-01" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Kontak Darurat -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm space-y-4">
+                    <h2 class="text-base font-bold text-textPrimary pb-2 border-b border-gray-100">Kontak Darurat Keluarga</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">Nama Penanggung Jawab</label>
+                            <input type="text" id="contact-name" value="Bpk. Budi" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">Nomor WhatsApp / Telepon</label>
+                            <input type="text" id="contact-phone" value="+62 812-3456-7890" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Integrasi IoT & Bot Telegram -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm space-y-4">
+                    <h2 class="text-base font-bold text-textPrimary pb-2 border-b border-gray-100">Konfigurasi ESP32 & Bot Telegram</h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">Telegram Bot Token</label>
+                            <input type="text" id="telegram-token" value="7382910:AAHxxxx_ElderCareBotTokenExample" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary font-mono text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-textSecondary mb-1.5 uppercase">Telegram Chat ID Penerima Peringatan</label>
+                            <input type="text" id="telegram-chatid" value="192837465" class="w-full px-4 py-2.5 rounded-lg border border-borderLight text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary font-mono text-xs">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Simpan -->
+                <div class="flex justify-end gap-4">
+                    <button type="submit" class="px-6 py-3 bg-primary hover:bg-secondary text-white font-medium text-sm rounded-xl transition-colors shadow-sm">
+                        Simpan Perubahan
+                    </button>
+                </div>
+
+            </form>
+
+        </main>
+    </div>
+
+    <!-- Script Interaksi & Logout -->
+   <!-- Script Interaksi, Penyimpanan Lokal, & Logout -->
+    <script>
+        const settingsForm = document.getElementById('settings-form');
+        const alertSuccess = document.getElementById('alert-success');
+
+        // Fungsi saat halaman Pengaturan dimuat, tampilkan data yang sudah tersimpan sebelumnya
+        window.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('elderName')) document.getElementById('elder-name').value = localStorage.getItem('elderName');
+            if(localStorage.getItem('deviceId')) document.getElementById('device-id').value = localStorage.getItem('deviceId');
+            if(localStorage.getItem('contactName')) document.getElementById('contact-name').value = localStorage.getItem('contactName');
+            if(localStorage.getItem('contactPhone')) document.getElementById('contact-phone').value = localStorage.getItem('contactPhone');
+            if(localStorage.getItem('telegramToken')) document.getElementById('telegram-token').value = localStorage.getItem('telegramToken');
+            if(localStorage.getItem('telegramChatId')) document.getElementById('telegram-chatid').value = localStorage.getItem('telegramChatId');
+        });
+
+        settingsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simpan semua isian form ke localStorage browser
+            localStorage.setItem('elderName', document.getElementById('elder-name').value);
+            localStorage.setItem('deviceId', document.getElementById('device-id').value);
+            localStorage.setItem('contactName', document.getElementById('contact-name').value);
+            localStorage.setItem('contactPhone', document.getElementById('contact-phone').value);
+            localStorage.setItem('telegramToken', document.getElementById('telegram-token').value);
+            localStorage.setItem('telegramChatId', document.getElementById('telegram-chatid').value);
+            
+            // Tampilkan pesan sukses sebentar
+            alertSuccess.classList.remove('hidden');
+            
+            // Hilangkan pesan setelah 3 detik
+            setTimeout(() => {
+                alertSuccess.classList.add('hidden');
+            }, 3000);
+        });
+
+        function prosesLogout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.replace("login.html");
+        }
+    </script>
+</body>
+</html>

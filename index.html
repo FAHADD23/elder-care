@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script>
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderCare - Dashboard Pemantauan Lansia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#247C83',
+                        secondary: '#258568',
+                        accent: '#2ECC71',
+                        bglight: '#F7F9FA',
+                        surface: '#FFFFFF',
+                        textPrimary: '#233747',
+                        textSecondary: '#71818D',
+                        borderLight: '#E5E7EB',
+                        error: '#EF4444',
+                        success: '#10B981',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bglight text-textPrimary font-sans flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-surface border-r border-borderLight flex flex-col justify-between shrink-0">
+        <div>
+            <div class="flex items-center gap-3 px-6 py-6 text-primary font-bold text-xl border-b border-gray-100">
+                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                <span>ElderCare</span>
+            </div>
+            <nav class="p-4 space-y-1.5">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard Utama
+                </a>
+                <a href="status.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Status Perangkat
+                </a>
+                <a href="riwayat.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Riwayat & Log
+                </a>
+                <a href="pengaturan.html" class="flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-gray-50 hover:text-textPrimary rounded-xl font-medium text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    Pengaturan
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 border-t border-borderLight">
+            <a href="#" onclick="prosesLogout()" class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error/10 rounded-xl font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Keluar
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-col h-screen overflow-y-auto">
+        <header class="bg-surface border-b border-borderLight px-8 py-4 flex justify-between items-center sticky top-0 z-30">
+            <div>
+                <h1 class="text-xl font-bold text-textPrimary">Ringkasan Pemantauan</h1>
+                <p class="text-xs text-textSecondary">Kondisi terkini lansia dan perangkat ESP32 IoT</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-full text-xs font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span> Sistem Terhubung (Online)
+                </div>
+            </div>
+        </header>
+
+        <main class="p-8 space-y-8 flex-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Status Gelang -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">Status Gelang</span>
+                        <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-textPrimary mb-1">Dikenakan</div>
+                    <p class="text-xs text-success font-medium flex items-center gap-1">✓ Terpasang di tangan</p>
+                </div>
+
+                <!-- Kondisi Baterai (DIBERI ID display-baterai) -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">Baterai Gelang</span>
+                       <div id="display-baterai-icon" class="p-2.5 bg-success/10 text-success rounded-xl">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                    <div id="display-baterai" class="text-2xl font-bold text-textPrimary mb-1">...</div>
+                    <p class="text-xs text-textSecondary">Estimasi dari Firebase</p>
+                </div>
+
+                <!-- Status Hub ESP32 -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">Koneksi ESP32 Hub</span>
+                        <div id="display-baterai-icon" class="p-2.5 bg-success/10 text-success rounded-xl">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-textPrimary mb-1">Stabil</div>
+                    <p class="text-xs text-textSecondary">Sinyal kuat (-65 dBm)</p>
+                </div>
+
+                <!-- Status Deteksi Jatuh (DIBERI ID alert-status-text & alert-icon-box) -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">Peringatan Jatuh</span>
+                        <div id="alert-icon-box" class="p-2.5 bg-gray-100 text-gray-400 rounded-xl">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                    </div>
+                    <div id="alert-status-text" class="text-2xl font-bold text-gray-400 mb-1">Memuat...</div>
+                    <p class="text-xs text-textSecondary">Update dari Firebase</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-8">
+                <!-- Aktivitas Terkini -->
+                <div class="lg:col-span-2 bg-surface p-6 rounded-2xl border border-borderLight shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-base font-bold text-textPrimary">Aktivitas Sensor Hari Ini</h2>
+                            <span class="text-xs bg-bglight px-3 py-1 rounded-lg text-textSecondary font-medium">Real-time update</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-3 rounded-xl bg-bglight/50">
+                                <div class="p-2 bg-success/10 text-success rounded-lg mt-0.5 font-bold">✓</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between">
+                                        <h4 class="text-sm font-semibold text-textPrimary">Gelang dikenakan dengan benar</h4>
+                                        <span class="text-xs text-textSecondary">10:30 WIB</span>
+                                    </div>
+                                    <p class="text-xs text-textSecondary mt-0.5">Sensor kontak kulit mendeteksi pemakai.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 rounded-xl bg-bglight/50">
+                                <div class="p-2 bg-primary/10 text-primary rounded-lg mt-0.5 font-bold">📶</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between">
+                                        <h4 class="text-sm font-semibold text-textPrimary">ESP32 Hub tersinkronisasi ke server</h4>
+                                        <span class="text-xs text-textSecondary">08:00 WIB</span>
+                                    </div>
+                                    <p class="text-xs text-textSecondary mt-0.5">Koneksi Wi-Fi stabil, transmisi data lancar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <span class="text-xs text-textSecondary">Butuh melihat riwayat lengkap?</span>
+                        <a href="riwayat.html" class="text-xs font-semibold text-primary hover:underline">Buka Menu Riwayat &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Profil Lansia -->
+                <div class="bg-surface p-6 rounded-2xl border border-borderLight shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-base font-bold text-textPrimary mb-4">Profil Terpantau</h2>
+                        <div class="flex items-center gap-4 mb-6 p-4 bg-bglight rounded-xl">
+                            <div id="display-avatar" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
+                                L
+                            </div>
+                            <div>
+                                <h3 id="display-elder-name" class="font-bold text-textPrimary text-sm">Ny. Siti Aminah</h3>
+                                <p id="display-device-id" class="text-xs text-textSecondary">Usia: Lansia • ID: #ELDER-ESP32-01</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-textSecondary">Kontak Darurat:</span>
+                                <span id="display-contact-name" class="font-semibold text-textPrimary">Bpk. Budi</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-textSecondary">Nomor Telepon:</span>
+                                <span id="display-contact-phone" class="font-semibold text-textPrimary">+62 812-3456-7890</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-textSecondary">Bot Telegram:</span>
+                                <span class="font-semibold text-success">Aktif & Terhubung</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="pengaturan.html" class="w-full py-2.5 bg-bglight hover:bg-gray-100 text-textPrimary text-xs font-semibold rounded-xl transition-colors flex justify-center items-center gap-2">
+                            Ubah Konfigurasi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- SCRIPT LOGOUT & LOCALSTORAGE SINKRONISASI -->
+    <script>
+        function prosesLogout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.replace("login.html");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const elderName = localStorage.getItem('elderName') || "Ny. Siti Aminah";
+            const deviceId = localStorage.getItem('deviceId') || "#ELDER-ESP32-01";
+            const contactName = localStorage.getItem('contactName') || "Bpk. Budi (Anak)";
+            const contactPhone = localStorage.getItem('contactPhone') || "+62 812-3456-7890";
+            
+            const elderInitial = elderName.charAt(0).toUpperCase();
+
+            document.getElementById('display-elder-name').innerText = elderName;
+            document.getElementById('display-device-id').innerText = "Usia: Lansia • ID: " + deviceId;
+            document.getElementById('display-avatar').innerText = elderInitial;
+            document.getElementById('display-contact-name').innerText = contactName;
+            document.getElementById('display-contact-phone').innerText = contactPhone;
+        });
+    </script>
+
+    <!-- SCRIPT FIREBASE REALTIME DATABASE -->
+<!-- SCRIPT FIREBASE REALTIME DATABASE (VERSI STABIL CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCpW4zC7XruNQ8-cEBjAQkG6rdMD8K-pSI",
+            authDomain: "elder-care-bd84b.firebaseapp.com",
+            databaseURL: "https://elder-care-bd84b-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "elder-care-bd84b",
+            storageBucket: "elder-care-bd84b.firebasestorage.app",
+            messagingSenderId: "849694978552",
+            appId: "1:849694978552:web:d32b3e45725a76e954260d",
+            measurementId: "G-HZ904JDFHK"
+        };
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+            const sensorRef = ref(db, 'Sensor');
+
+            onValue(sensorRef, (snapshot) => {
+                const data = snapshot.val();
+                console.log("Data Firebase Diterima:", data);
+
+                if (data) {
+                    // Update Baterai & Logika Warna (< 20% Merah)
+                    if (data.baterai !== undefined) {
+                        const batElement = document.getElementById('display-baterai');
+                        const batIcon = document.getElementById('display-baterai-icon');
+
+                        if (batElement) {
+                            batElement.innerText = data.baterai + "%";
+
+                            if (data.baterai < 20) {
+                                batElement.className = "text-2xl font-bold text-error mb-1 animate-pulse";
+                                if (batIcon) batIcon.className = "p-2.5 bg-error/10 text-error rounded-xl animate-pulse";
+                            } else {
+                                batElement.className = "text-2xl font-bold text-textPrimary mb-1";
+                                if (batIcon) batIcon.className = "p-2.5 bg-success/10 text-success rounded-xl";
+                            }
+                        }
+                    }
+
+                    // Update Status Jatuh
+                    if (data.status_jatuh !== undefined) {
+                        const statusText = document.getElementById('alert-status-text');
+                        const iconBox = document.getElementById('alert-icon-box');
+
+                        if (statusText && iconBox) {
+                            if (data.status_jatuh === true) {
+                                statusText.innerText = "BAHAYA JATUH!";
+                                statusText.className = "text-2xl font-bold text-error mb-1 animate-pulse";
+                                iconBox.className = "p-2.5 bg-error/10 text-error rounded-xl animate-pulse";
+                            } else {
+                                statusText.innerText = "Aman";
+                                statusText.className = "text-2xl font-bold text-success mb-1";
+                                iconBox.className = "p-2.5 bg-success/10 text-success rounded-xl";
+                            }
+                        }
+                    }
+                }
+            }, (error) => {
+                console.error("Gagal membaca Firebase:", error);
+            });
+        } catch (err) {
+            console.error("Inisialisasi Firebase Gagal:", err);
+        }
+    </script>
+</body>
+</html>
